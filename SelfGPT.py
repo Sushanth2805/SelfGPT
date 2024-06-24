@@ -1,12 +1,8 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 import streamlit as st
-import os
 import google.generativeai as genai
 
 # Configure the API key
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # Function to get response from Gemini API
 def get_gemini_response(question):
@@ -25,7 +21,7 @@ st.sidebar.title("SelfGPT")
 st.sidebar.info("""
     This application demonstrates the use of Gemini LLM for answering questions.
     Enter your query below and click "Ask Question" to get a response.
-    Please ask questions for educational purposes
+    Please ask questions for educational purposes.
 """)
 
 model_option = st.sidebar.selectbox(
